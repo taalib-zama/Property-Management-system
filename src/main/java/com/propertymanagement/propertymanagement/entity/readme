@@ -1,0 +1,1 @@
+entity : entity is that class which will get mapped to  a db table.
