@@ -1,0 +1,26 @@
+1. saving a new property in DB : POST METHOD.
+   {
+    "title": "Property_4 NEW",
+    "description": "3BHK",
+    "ownerName": "Rajesh kumar",
+    "ownerEmail": "rajesh.kumar@gmail.com",
+    "price":40000,
+    "address": "jamshedpur, jharkhand, 751019"
+}
+
+
+2. GET ALL PROPERTIES FROM database.
+  GET - http://localhost:8080/propertymanagement/v1/properties
+  
+  
+3. PUT A PROPERTY : 
+{
+    "title": "Property_4 NEW",
+    "description": "3BHK - update to 2bhk",
+    "ownerName": "Rajesh kumar",
+    "ownerEmail": "rajesh.kumar@gmail.com/rajni.sngh@gmail.com",
+    "price":40000,
+    "address": "jamshedpur, jharkhand, 751019"
+}
+4. delete : 
+http://localhost:8080/propertymanagement/v1/properties/delete-by-id/3
