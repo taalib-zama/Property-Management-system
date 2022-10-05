@@ -3,6 +3,7 @@ package com.propertymanagement.propertymanagement.controller;
 import com.propertymanagement.propertymanagement.dto.PropertyDTO;
 import com.propertymanagement.propertymanagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/propertymanagement/v1")   //class level mapping of a URL to a controller class.
 public class PropertyController {
+    @Value("${pms.dummy:}")
+    private String dummy;
 
     @Autowired                                  //dependency injection is done here.
     private PropertyService propertyService;
@@ -38,6 +41,7 @@ public class PropertyController {
     //first add this method to repository interface.
     @GetMapping("/properties")  //URL : http://localhost:8080/propertymanagement/v1/properties
     public ResponseEntity<List<PropertyDTO>> getAlProperties(){
+        System.out.println(dummy);
         List<PropertyDTO> propertyList= propertyService.getAllProperties();
         ResponseEntity<List<PropertyDTO>> responseEntity = new ResponseEntity<>(propertyList, HttpStatus.OK);
         return responseEntity;

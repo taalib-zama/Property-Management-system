@@ -8,8 +8,8 @@ public class PropertyDTO {
     private Long id;
     private String title;   //type of property 2BHK/3BHK.
     private String description;
-    private String ownerName;
-    private String ownerEmail;
+//    private String ownerName;
+////    private String owner Email;
     private Double price;
     private String address;
 
