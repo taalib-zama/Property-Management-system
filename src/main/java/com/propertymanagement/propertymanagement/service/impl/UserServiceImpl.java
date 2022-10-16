@@ -24,12 +24,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO register(UserDTO userDTO) {
-
+        //to check if user already exist or not. Only check the emailID
         Optional<UserEntity> optUe = userRepository.findByOwnerEmail(userDTO.getOwnerEmail());
         if(optUe.isPresent()){
             List<ErrorModel> errorModelList = new ArrayList<ErrorModel>();
             ErrorModel errorModel = new ErrorModel();
-            errorModel.setCode("EMAIL LARADT EXIST");
+            errorModel.setCode("EMAIL ALREADY EXIST");
             errorModel.setMessage("THE EMAIL WE'RE TRYING TO REGISTER ALERADY EXIST");
             errorModelList.add(errorModel);
 
@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO login(String email, String password) {
         UserDTO userDTO = null;
+        //consition to only login if the userID and password are correct.
         Optional<UserEntity> optionalUserEntity =  userRepository.findByOwnerEmailAndPassword(email, password);
         if(optionalUserEntity.isPresent()){
             userDTO = userConverter.convertEntitytoDTO(optionalUserEntity.get());
