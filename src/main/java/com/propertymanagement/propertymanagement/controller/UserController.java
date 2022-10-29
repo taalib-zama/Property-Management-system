@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/propertymanagement/v1/user")
 public class UserController {
@@ -18,7 +20,7 @@ public class UserController {
     @Autowired
     UserService userService;
     @PostMapping("/register")       //URL :http://localhost:8080/propertymanagement/v1/user/register (its a post method)
-    public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO userDTO){
         userDTO =   userService.register(userDTO);
         ResponseEntity<UserDTO> responseEntity = new ResponseEntity<>(userDTO, HttpStatus.CREATED);
         return responseEntity;

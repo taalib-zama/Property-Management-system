@@ -15,7 +15,7 @@ public class CustomExceptionHandler{
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public void handleFieldValidation(MethodArgumentNotValidException manv) {
+    public ResponseEntity<List<ErrorModel>> handleFieldValidation(MethodArgumentNotValidException manv) {
         List<ErrorModel> errorModelList = new ArrayList<>();
         ErrorModel errorModel = null;
         List<FieldError> fieldErrorList = manv.getBindingResult().getFieldErrors();
@@ -25,6 +25,7 @@ public class CustomExceptionHandler{
             errorModel.setMessage(fe.getDefaultMessage());
             errorModelList.add(errorModel);
         }
+        return new ResponseEntity<List<ErrorModel>>(errorModelList, HttpStatus.BAD_REQUEST);
     }
 
 
